@@ -9,41 +9,45 @@
         tools:context="com.example.android.politicalpreparedness.MainActivity">
 
         <ImageView
-            android:id="@+id/ballot_logo"
+            android:id="@+id/ballot_logo_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="Ballot Logo"
+            android:contentDescription="@string/ballot_logo_description"
             android:src="@drawable/ballot_logo"
-            app:layout_constraintBottom_toTopOf="@+id/upcoming_elections"
+            app:layout_constraintBottom_toTopOf="@+id/upcoming_elections_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/upcoming_elections"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/upcoming_elections_button"
+            style="@style/TextAppearance.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_button_height"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="Upcoming Elections"
-            app:layout_constraintBottom_toTopOf="@+id/navigate_to_representatives"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/upcoming_elections"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/find_representative_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/navigate_to_representatives"
+            android:id="@+id/find_representative_button"
+            style="@style/TextAppearance.MaterialComponents.Button"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/default_button_height"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Navigate to Representatives"
+            android:background="@color/colorPrimary"
+            android:text="@string/find_my_representatives"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
