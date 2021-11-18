@@ -15,7 +15,7 @@ class ElectionsRepository(private val database: ElectionDatabase) {
 
     //Create live data val for upcoming elections
     val elections: LiveData<List<Election>> = database.electionDao.getAllElections()
-    private val voterInfo =  MutableLiveData<VoterInfoResponse>()
+    val voterInfo =  MutableLiveData<VoterInfoResponse>()
 
 
 
@@ -38,7 +38,7 @@ class ElectionsRepository(private val database: ElectionDatabase) {
     }
 
     suspend fun insertElection(election: Election) {
-        Log.i("election", election.saved.toString())
+        Log.i("election", election.isSaved.toString())
         withContext(Dispatchers.IO) {
             database.electionDao.insertElection(election)
         }
