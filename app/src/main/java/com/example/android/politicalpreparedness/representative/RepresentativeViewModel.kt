@@ -1,12 +1,32 @@
 package com.example.android.politicalpreparedness.representative
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.databinding.Bindable
+import androidx.lifecycle.*
+import com.example.android.politicalpreparedness.network.CivicsApi
+import com.example.android.politicalpreparedness.network.models.Address
+import com.example.android.politicalpreparedness.representative.model.Representative
+import kotlinx.coroutines.launch
 
-class RepresentativeViewModel: ViewModel() {
+class RepresentativeViewModel(application: Application) : AndroidViewModel(application) {
 
-    //TODO: Establish live data for representatives and address
+    //Establish live data for representatives and address
+    val representatives: MutableLiveData<List<Representative>> = MutableLiveData()
+    val address = MutableLiveData<Address>()
 
-    //TODO: Create function to fetch representatives from API from a provided address
+    //Create function to fetch representatives from API from a provided address
+    fun getRepresentatives() {
+        if (address.value != null) {
+            viewModelScope.launch {
+                try {
+                    val (offices, officials) = CivicsApi.retrofitService.getRepresentativesAsync(address.value!!.toFormattedString()).await()
+                    representatives.postValue(offices.flatMap { office -> office.getRepresentatives(officials) })
+                } catch (e: Throwable) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
 
     /**
      *  The following code will prove helpful in constructing a representative from the API. This code combines the two nodes of the RepresentativeResponse into a single official :
@@ -19,6 +39,14 @@ class RepresentativeViewModel: ViewModel() {
 
      */
 
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(RepresentativeViewModel::class.java)) {
+                return RepresentativeViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
+    }
     //TODO: Create function get address from geo location
 
     //TODO: Create function to get address from individual fields
