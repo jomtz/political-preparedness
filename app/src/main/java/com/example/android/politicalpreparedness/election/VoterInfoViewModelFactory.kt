@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 class VoterInfoViewModelFactory(val app: Application): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(VoterInfoViewModel::class.java)) {
-            return ElectionsViewModel(app) as T
+            return VoterInfoViewModel(app) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

@@ -13,24 +13,23 @@ class ElectionListAdapter(private val clickListener: ElectionListener): ListAdap
         ElectionViewHolder>(ElectionDiffCallback()) {
 
     var elections = listOf<Election>()
-        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
         }
     override fun getItemCount(): Int = elections.size
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ElectionViewHolder {
+        val binding = ElectionItemBinding.inflate(LayoutInflater.from(parent.context),
+            parent, false)
+        return ElectionViewHolder(binding)
+    }
+
     override fun onBindViewHolder(holder: ElectionViewHolder, position: Int) {
         holder.viewDataBinding.also {
             it.election = elections[position]
             it.clickListener = clickListener
         }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ElectionViewHolder {
-        val binding = ElectionItemBinding.inflate(LayoutInflater.from(parent.context),
-            parent, false)
-        return ElectionViewHolder(binding)
     }
 }
 

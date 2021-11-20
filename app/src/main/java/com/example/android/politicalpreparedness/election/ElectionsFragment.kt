@@ -17,7 +17,7 @@ import com.example.android.politicalpreparedness.election.adapter.ElectionListen
 class ElectionsFragment: Fragment() {
 
     //Add ViewModel values and create ViewModel
-    private val electionsViewModel: ElectionsViewModel by lazy {
+    private val viewModel: ElectionsViewModel by lazy {
         val application = requireNotNull(this.activity).application
         val viewModelFactory = ElectionsViewModelFactory(application)
         ViewModelProvider(this, viewModelFactory)
@@ -41,7 +41,7 @@ class ElectionsFragment: Fragment() {
             false)
 
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = electionsViewModel
+        binding.viewModel = viewModel
 
         //Populate recycler adapters
         upcomingElectionListAdapter = ElectionListAdapter(ElectionListener {
@@ -61,13 +61,13 @@ class ElectionsFragment: Fragment() {
         binding.savedElectionsRecyclerView.adapter = savedElectionListAdapter
 
 
-        electionsViewModel.upcomingElections.observe(viewLifecycleOwner, Observer { elections ->
+        viewModel.upcomingElections.observe(viewLifecycleOwner, Observer { elections ->
             elections.apply {
                 upcomingElectionListAdapter.elections = elections
             }
         })
 
-        electionsViewModel.savedElections.observe(viewLifecycleOwner, Observer { elections ->
+        viewModel.savedElections.observe(viewLifecycleOwner, Observer { elections ->
             elections.apply {
                 savedElectionListAdapter.elections = elections
             }
