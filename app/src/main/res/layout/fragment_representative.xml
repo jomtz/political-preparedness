@@ -15,11 +15,12 @@
             type="com.example.android.politicalpreparedness.network.models.Address" />
     </data>
 
-    <!-- TODO: Add motion scene to hide form on vertical scroll. -->
+    <!--Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/motion_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="@dimen/default_padding"
         app:layoutDescription="@xml/fragment_representative_scene">
 
         <!--Add visual styling and content -->
@@ -107,6 +108,8 @@
             android:id="@+id/button_search"
             android:layout_width="match_parent"
             android:layout_height="@dimen/default_button_height"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:background="@color/colorPrimary"
             android:text="@string/find_my_representatives"
             android:textColor="@color/white"
@@ -117,10 +120,12 @@
             android:id="@+id/button_location"
             android:layout_width="match_parent"
             android:layout_height="@dimen/default_button_height"
-            android:textColor="@color/white"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:background="@color/colorPrimary"
-            android:layout_marginTop="16dp"
             android:text="@string/use_my_location"
+            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/button_search" />
 
         <!-- Add visual styling and content -->
@@ -128,9 +133,9 @@
             android:id="@+id/representative_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="@string/my_representatives"
             android:textColor="@color/gray50"
-            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_location" />
 
