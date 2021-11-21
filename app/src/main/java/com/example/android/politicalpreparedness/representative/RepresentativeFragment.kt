@@ -118,6 +118,7 @@ class RepresentativeFragment: Fragment() {
         return (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
     }
 
+    //Create function get address from geo location
     @SuppressLint("MissingPermission")
     private fun getLocation() {
         //Get location from LocationServices
@@ -141,7 +142,7 @@ class RepresentativeFragment: Fragment() {
 
 
 
-
+    //Create function to get address from individual fields
     private fun geoCodeLocation(location: Location): Address {
         val geocoder = Geocoder(context, Locale.getDefault())
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)

@@ -47,8 +47,6 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
             throw IllegalArgumentException("Unknown ViewModel class")
         }
     }
-    //TODO: Create function get address from geo location
 
-    //TODO: Create function to get address from individual fields
 
 }
