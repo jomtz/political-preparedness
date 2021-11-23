@@ -1,7 +1,6 @@
 package com.example.android.politicalpreparedness.representative
 
 import android.app.Application
-import androidx.databinding.Bindable
 import androidx.lifecycle.*
 import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Address
@@ -42,6 +41,7 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(RepresentativeViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
                 return RepresentativeViewModel(app) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
